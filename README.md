@@ -34,8 +34,7 @@ libreoffice --view --infilter="dBASE:25" XML_RAP.dbf
 ```
 Parametr `--infilter` jest konieczny, ponieważ VATowiec używa strony kodowej **CP852**.
 
-Do edycji plików *CSV* (wyeksportowanych przy pomocy `dbf.pl`),
-używam LibreOffice z takim parametrem:
+Do edycji plików *CSV* (wyeksportowanych przy pomocy `dbf.pl`) używam LibreOffice z takim parametrem:
 ```
 libreoffice --infilter="CSV:44,34,25,1,1/2/2/2/3/2/4/2/5/2/6/2/7/2/8/2/9/2/10/2/11/2/12/2/13/2/14/2/15/2/16/2/17/2/18/2" jpk_v7k_3.csv
 ```
