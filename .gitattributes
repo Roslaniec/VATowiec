@@ -1,0 +1,2 @@
+* export-ignore
+*.csv -export-ignore

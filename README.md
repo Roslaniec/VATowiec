@@ -5,40 +5,45 @@ a jego działanie opiera się na plikach XBase (.dbf).
 
 Program umożliwia eksport danych do różnych formatów, w szczególności XML — 
 niezbędnego przy wysyłaniu plików JPK.
-Formaty te można edytować w wewnętrznym edytorze,
-jednak nie jest to rozwiązanie optymalne,
-szczególnie w przypadku pracy nad większymi zmianami.
 
-Aby uprościć pracę na plikach *.dbf* powstał skrypt `dbf.pl`,
-który pozwala na:
-- wykonywanie operacji SQL na bazie danych (np. SELECT, DELETE, itp),
-- eksport danych do formatu CSV,
-- import danych z formatu CSV.
+W tym repozytorum udostępniam moje zmiany lub poprawki w definicjach XML.
 
-Przykłady użycia:
-```
-./dbf.pl query 'select * from XML_STR where ADRES like "TEST\\%"'
-./dbf.pl query 'delete from XML_STR where ADRES like "TEST\\%"'
-./dbf.pl export 'select * from XML_STR where ADRES like "JPK_V7M_2\\%"' > jpk_v7m_2.csv
-./dbf.pl import XML_STR ../VATowiec/jpk_v7m_3.STR.csv
-```
+[!IMPORTANT]
+Definicje te tworzę głównie dla siebie i nie daję żadnej gwarancji, 
+że wygenerowane forumalarze będą prawidłowe dla innych form księgowania.
 
-## LibreOffice
+W szczególności mam tu na myśli dane które znajdują się w formularzach.
 
-Do pracy na plikach CSV używam LibreOffice.
-LibreOffice (co może nie jest takie oczywiste) 
-pozwala również na pracę bezpośrednio na plikach `.dbf`.
-W szczególności chętnie używam tej możliwości do szybkiego podejrzenia zawartości pliku `.dbf`:
-```
-libreoffice --view --infilter="dBASE:25" XML_RAP.dbf
-```
-Parametr `--infilter` jest konieczny, ponieważ VATowiec używa strony kodowej **CP852**.
+[!CAUTION]
+Sam fakt, że wygenerowany formularz XML ma prawidłową składnię i przechodzi walidację nie oznacza, 
+że jest on prawidłowy z punktu widzenia przepisów skarbowych!
 
-Do edycji plików *CSV* (wyeksportowanych przy pomocy `dbf.pl`) używam LibreOffice z takim parametrem:
-```
-libreoffice --infilter="CSV:44,34,25,1,1/2/2/2/3/2/4/2/5/2/6/2/7/2/8/2/9/2/10/2/11/2/12/2/13/2/14/2/15/2/16/2/17/2/18/2" jpk_v7k_3.csv
-```
-Ten skomplikowany parametr `--infilter` wymusza użycie strony kodowej **CP852** oraz zapewnia, 
-że wszystkie kolumny są traktowane jako *TEXT*, dzięki czemu nie mamy problemu z różnymi 
-automatycznymi konwersjami, które LibreOffice bardzo lubi robić
-(przykładowo konwertuje pole do daty lub traktuje jako liczbę).
+VATowiec daje bardzo dużą dowolność w zakresie sposobu księgowania zdarzeń gospodarczych
+i z pewnością nie jestem w stanie ogarnąć wszystkich.
+
+Przed wysłaniem wygenerowanego pliku XML zawsze sprawdź jego zawartość pod kątem poprawności
+merytorycznej!
+
+
+## Instalacja
+
+W zakładce [releases](https://github.com/Roslaniec/VATowiec/releases) 
+anajdziesz repozytoria z kolejnymi wydaniami. 
+Znajdź najnowszy, przykładowo JPK3.zip
+W tym pliku będa trzy pliki: XML_RAP.dbf, XML_RW.dbf, XML_STR.dbf.
+To są bazy danych które należy podmienić w VATowcu.
+
+1. Zamknij program VATowiec
+
+2. Umieść wypakowane pliki XML_*.dbf w katalogu **C:\BR\PROGRAMY\HELP** (nadpisując istniejące pliki)
+
+3. Uruchom VATowca i wykonaj:
+   System > Definicje XML
+   Prawy przycisk myszy... Import
+   Wybierz formularz: JPK_V7M_3 i/lub JPK_V7K_3... [ > ]... [ OK ]
+
+4. Gotowe.
+
+Jeżeli w przyszłości zrobisz dogrywkę, to definicje które zostały już zaimportowane nie znikną
+z bieżącej bazy, tylko nie będziesz miał już możliwości importu tych moich definicji.
+Aby je powtórnie zaimportować po dogrywce, musisz powtórnie wykonać operacje powyżej.
