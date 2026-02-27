@@ -31,7 +31,7 @@ sub usage {
 }
 
 our($opt_h, $opt_v);
-our $opt_p = '.';
+our $opt_p = $ENV{'DBF_PATH'} // '.';
 our $opt_r = chr(0x1E); # Record separator, NOT USED
 our $opt_f = chr(0x1F); # Field  separator, NOT USED
 getopts('hp:v');
@@ -39,7 +39,6 @@ usage if $opt_h;
 
 $opt_r = chr(hex($opt_r)) if ($opt_r =~ /^0x/);
 $opt_f = chr(hex($opt_f)) if ($opt_f =~ /^0x/);
-
 
 sub cmd_query {
     my $query = shift;

@@ -14,11 +14,11 @@ VATowiec daje bardzo dużą dowolność w zakresie sposobu księgowania zdarzeń
 i z pewnością nie jestem w stanie ogarnąć wszystkich.
 
 > [!CAUTION]
-> Sam fakt, że wygenerowany formularz XML ma prawidłową składnię i przechodzi walidację XMLnie oznacza,
-> że jest on prawidłowy z punktu widzenia przepisów skarbowych!
+> Sam fakt, że wygenerowany formularz XML ma prawidłową składnię i przechodzi walidację XML
+> nie oznacza, że jest on prawidłowy z punktu widzenia przepisów skarbowych!
 
-Przed wysłaniem wygenerowanego pliku XML do Urzędu Skarbowego powinieneś sprawdzić jego zawartość pod kątem poprawności
-merytorycznej!
+Przed wysłaniem wygenerowanego pliku XML do Urzędu Skarbowego powinieneś sprawdzić 
+jego zawartość pod kątem poprawności merytorycznej!
 
 
 ## Instalacja
