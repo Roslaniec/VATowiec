@@ -40,6 +40,8 @@ usage if $opt_h;
 $opt_r = chr(hex($opt_r)) if ($opt_r =~ /^0x/);
 $opt_f = chr(hex($opt_f)) if ($opt_f =~ /^0x/);
 
+say "DBF database location is: $opt_p" if $opt_v;
+
 sub cmd_query {
     my $query = shift;
     my $dbh = DBI->connect("DBI:XBase:".$opt_p) or die $DBI::errstr;

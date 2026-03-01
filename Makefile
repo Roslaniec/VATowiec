@@ -11,9 +11,9 @@
 
 VDIR := var
 TDIR := tmp
-export DBF_PATH := $(VDIR)
+export DBF_PATH ?= $(VDIR)
 
-RAPORTY := jpk_v7m_3 jpk_v7k_3
+RAPORTY := jpk_v7m_3 jpk_v7k_3 fa_3
 BAZY    := RAP RW STR
 CELE    := $(addprefix $(TDIR)/, $(RAPORTY))
 
@@ -28,7 +28,7 @@ ifeq ($(OS),Windows_NT)
     DBF := dbf
 else
     export PATH := .:$(PATH)
-    DBF := ./dbf.pl
+    DBF := ./dbf.pl -v
 endif
 
 all: $(CELE)
@@ -39,7 +39,7 @@ init:
 	$(MAKE) dogrywka
 
 clean:
-	rm -f $(TDIR)/jpk*
+	rm -f $(TDIR)/jpk_* $(TDIR)/fa_*
 
 download:
 	wget -nd -N -P $(VDIR) http://www.vatowiec.pl/pliki/br32v.zip
@@ -51,16 +51,10 @@ dogrywka: download
 $(CELE): %: $(addprefix %.,$(BAZY))
 	touch $@
 
-# $(TDIR)/jpk_v7k_3: $(addprefix $(TDIR)/jpk_v7k_3.,$(BAZY))
-# 	touch $@
+# JPK_V7K_3
 
 $(jpk_v7k_3.RAP): jpk_v7k_3.RAP.csv
 	$(DBF) query 'delete from XML_RAP where RAP = "JPK_V7K_3"'
-	$(DBF) import XML_RAP $<
-	touch $@
-
-$(jpk_v7m_3.RAP): jpk_v7m_3.RAP.csv
-	$(DBF) query 'delete from XML_RAP where RAP = "JPK_V7M_3"'
 	$(DBF) import XML_RAP $<
 	touch $@
 
@@ -69,14 +63,21 @@ $(jpk_v7k_3.RW): jpk_v7k_3.RW.csv
 	$(DBF) import XML_RW $<
 	touch $@
 
-$(jpk_v7m_3.RW): jpk_v7m_3.RW.csv
-	$(DBF) query 'delete from XML_RW where RAP = "JPK_V7M_3"'
-	$(DBF) import XML_RW $<
-	touch $@
-
 $(jpk_v7k_3.STR): jpk_v7k_3.STR.csv
 	$(DBF) query 'delete from XML_STR where ADRES like "JPK_V7K_3\\%"'
 	$(DBF) import XML_STR $<
+	touch $@
+
+# JPK_V7M_3
+
+$(jpk_v7m_3.RAP): jpk_v7m_3.RAP.csv
+	$(DBF) query 'delete from XML_RAP where RAP = "JPK_V7M_3"'
+	$(DBF) import XML_RAP $<
+	touch $@
+
+$(jpk_v7m_3.RW): jpk_v7m_3.RW.csv
+	$(DBF) query 'delete from XML_RW where RAP = "JPK_V7M_3"'
+	$(DBF) import XML_RW $<
 	touch $@
 
 $(jpk_v7m_3.STR): jpk_v7m_3.STR.csv
@@ -84,6 +85,21 @@ $(jpk_v7m_3.STR): jpk_v7m_3.STR.csv
 	$(DBF) import XML_STR $<
 	touch $@
 
-test:
-	echo $(addprefix $(TDIR)/, $(addprefix jpk_v7k_3.,$(BAZY)))
-	echo $(addprefix $(TDIR)/jpk_v7k_3.,$(BAZY))
+# FA_3
+
+$(fa_3.RAP): fa_3.RAP.csv
+	$(DBF) query 'delete from XML_RAP where RAP = "FA_3"'
+	$(DBF) import XML_RAP $<
+	touch $@
+
+$(fa_3.RW): 
+	touch $@
+
+$(fa_3.STR): fa_3.STR.csv
+	$(DBF) query 'delete from XML_STR where ADRES like "FA_3\\%"'
+	$(DBF) import XML_STR $<
+	touch $@
+
+# test:
+# 	echo $(addprefix $(TDIR)/, $(addprefix jpk_v7k_3.,$(BAZY)))
+# 	echo $(addprefix $(TDIR)/jpk_v7k_3.,$(BAZY))
