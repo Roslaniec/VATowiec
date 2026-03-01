@@ -1,25 +1,26 @@
 #
 # How to use:
 # ----------
-# make init
-# make
 # make clean
+# make init
+# make release
 #
 
 
-.PHONY: all init clean download dogrywka
+.PHONY: all init clean download dogrywka release
 
 VDIR := var
-TDIR := tmp
+ODIR := out
 export DBF_PATH ?= $(VDIR)
 
 RAPORTY := jpk_v7m_3 jpk_v7k_3 fa_3
 BAZY    := RAP RW STR
-CELE    := $(addprefix $(TDIR)/, $(RAPORTY))
+CELE    := $(addprefix $(ODIR)/, $(RAPORTY))
+RELEASE := JPK3.zip
 
 $(foreach n, $(RAPORTY),\
     $(foreach r,$(BAZY),\
-        $(eval $(n).$(r) := $(TDIR)/$(n).$(r))\
+        $(eval $(n).$(r) := $(ODIR)/$(n).$(r))\
     )\
 )
 
@@ -35,11 +36,12 @@ all: $(CELE)
 
 init: 
 	@mkdir -p $(VDIR)
-	@mkdir -p $(TDIR)
+	@mkdir -p $(ODIR)
 	$(MAKE) dogrywka
 
 clean:
-	rm -f $(TDIR)/jpk_* $(TDIR)/fa_*
+	rm -f $(ODIR)/jpk_* $(ODIR)/fa_*
+	rm -f $(ODIR)/$(RELEASE)
 
 download:
 	wget -nd -N -P $(VDIR) http://www.vatowiec.pl/pliki/br32v.zip
@@ -47,6 +49,10 @@ download:
 dogrywka: download
 	7z e $(VDIR)/br32v.zip -ba -bb0 -y -o$(VDIR) \
 	HELP/XML_RAP.dbf HELP/XML_RW.dbf HELP/XML_STR.dbf
+
+release: all
+	cd $(VDIR) && zip ../$(ODIR)/$(RELEASE) *dbf
+
 
 $(CELE): %: $(addprefix %.,$(BAZY))
 	touch $@
@@ -101,5 +107,5 @@ $(fa_3.STR): fa_3.STR.csv
 	touch $@
 
 # test:
-# 	echo $(addprefix $(TDIR)/, $(addprefix jpk_v7k_3.,$(BAZY)))
-# 	echo $(addprefix $(TDIR)/jpk_v7k_3.,$(BAZY))
+# 	echo $(addprefix $(ODIR)/, $(addprefix jpk_v7k_3.,$(BAZY)))
+# 	echo $(addprefix $(ODIR)/jpk_v7k_3.,$(BAZY))
