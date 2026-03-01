@@ -17,14 +17,14 @@ JPK_V7K_3\1.Naglowek\7.Rok\,.,N,4,,"left(VG('okr'),4)",,"Oznaczenie roku, za kt¢
 JPK_V7K_3\1.Naglowek\8.Miesiac\,.,N,2,,"substr(VG('okr'),6)",,"Oznaczenie miesi¥ca, za kt¢ry skˆadana jest deklaracja i ewidencja dla JPK_V7M oraz oznaczenie miesi¥ca, za kt¢ry skˆadana jest ewidencja dla JPK_V7K (np. 7). W przypadku zˆo¾enia pierwotnego JPK_V7K, jak i korekty cz©˜ci deklaracyjnej nale¾y wskaza† osta","tni miesi¥c kwartaˆu, tj. odpowiednio: 3, 6, 9, 12.",,,,,,,,2022.02.09 11:39:10
 JPK_V7K_3\2.Podmiot1\,.,,,,"vp('LpSp',0)==0 .and. DK->(dbseek('0000')).and. RV->(dbgotop()) .and. RV->(dbseek(VG('okr')))",,,,,,,,,,,2022.02.09 11:39:10
 JPK_V7K_3\2.Podmiot1\,rola,Z,20,,"""Podatnik""",,,,,,,,,,,2022.02.09 11:39:10
-JPK_V7K_3\2.Podmiot1\OsobaFizyczna\,.,,,,"DK->(dbsetorder(""DK"")).and.DK->(dbseek(""0000"")) .and. .not.empty(DK->DATA_UR)",,,,,,,,,,,2022.02.09 11:39:10
+JPK_V7K_3\2.Podmiot1\OsobaFizyczna\,.,,,,"DK->(dbsetorder(""DK"")).and.DK->(dbseek(""0000"")) .and. .not.empty(ctod(DK->DATA_UR))",,,,,,,,,,,2022.02.09 11:39:10
 JPK_V7K_3\2.Podmiot1\OsobaFizyczna\1.etd:NIP\,.,Z,15,,trim(DK->NIPBK),,Identyfikator podatkowy NIP podatnika (np. 1010000000).,,,,,,,,,2022.02.09 11:39:10
 JPK_V7K_3\2.Podmiot1\OsobaFizyczna\2.etd:ImiePierwsze\,.,Z,20,,trim(DK->IMIE),,Pierwsze imi© podatnika,,,,,,,,,2022.02.09 11:39:10
 JPK_V7K_3\2.Podmiot1\OsobaFizyczna\3.etd:Nazwisko\,.,Z,20,,trim(DK->NAZWISKO),,Nazwisko podatnika,,,,,,,,,2022.02.09 11:39:10
 JPK_V7K_3\2.Podmiot1\OsobaFizyczna\4.etd:DataUrodzenia\,.,D,10,,"strtran(DK->DATA_UR,""."",""-"")",,Data urodzenia podatnika (np. 1977-07-07),,,,,,,,,2022.02.09 11:39:10
 JPK_V7K_3\2.Podmiot1\OsobaFizyczna\5.Email\,.,Z,30,,"iif(!empty(DK->E_MAIL),trim(DK->E_MAIL),.F.)",,Adres poczty elektronicznej podatnika lub osoby reprezentuj¥cej podatnika,,,,,,,,,2022.02.09 11:39:10
 JPK_V7K_3\2.Podmiot1\OsobaFizyczna\6.Telefon\,.,Z,20,,"iif(!empty(DK->TEL),trim(DK->TEL),.F.)",,Numer telefonu kontaktowego (np. 801055055) [pole fakultatywne],,,,,,,,,2022.02.09 11:39:10
-JPK_V7K_3\2.Podmiot1\OsobaNiefizyczna\,.,,,,"DK->(dbsetorder(""DK"")).and.DK->(dbseek(""0000"")) .and. empty(DK->DATA_UR)",,,,,,,,,,,2022.02.09 11:39:10
+JPK_V7K_3\2.Podmiot1\OsobaNiefizyczna\,.,,,,"DK->(dbsetorder(""DK"")).and.DK->(dbseek(""0000"")) .and. empty(ctod(DK->DATA_UR))",,,,,,,,,,,2022.02.09 11:39:10
 JPK_V7K_3\2.Podmiot1\OsobaNiefizyczna\1.NIP\,.,Z,10,,trim(DK->NIPBK),,Identyfikator podatkowy NIP podatnika (np. 1010000000).,,,,,,,,,2022.02.09 11:39:10
 JPK_V7K_3\2.Podmiot1\OsobaNiefizyczna\2.PelnaNazwa\,.,Z,,,"trim(DK->NAZWA)+"" ""+trim(DK->NAZWA_CD)",,Nazwa podmiotu,,,,,,,,,2022.02.09 11:39:10
 JPK_V7K_3\2.Podmiot1\OsobaNiefizyczna\3.Email\,.,Z,,,"iif(!empty(DK->E_MAIL),trim(DK->E_MAIL),.F.)",,Adres poczty elektronicznej podatnika lub osoby reprezentuj¥cej podatnika,,,,,,,,,2022.02.09 11:39:10
