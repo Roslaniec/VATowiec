@@ -25,9 +25,11 @@ jego zawartość pod kątem poprawności merytorycznej!
 
 W zakładce [releases](https://github.com/Roslaniec/VATowiec/releases) 
 anajdziesz repozytoria z kolejnymi wydaniami. 
-Znajdź najnowszy, przykładowo JPK3.zip
+Znajdź najnowsze wydanie (release) a w nim archiwum **JPK3.zip**.
+
 W tym pliku będa trzy pliki: XML_RAP.dbf, XML_RW.dbf, XML_STR.dbf.
-To są bazy danych które należy podmienić w VATowcu.
+
+To są bazy danych które należy podmienić w VATowcu w taki sposób:
 
 1. Zamknij program VATowiec
 
