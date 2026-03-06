@@ -1,0 +1,54 @@
+ADRES,NAZWA,TYP,ROZMIAR,LICZBA,FORMULA,FORMULA1,OPIS,OPIS1,SLOWNIK,REGWYM,WYMOG,UWAGI,POLECENIE,POLECENIE1,WYST,DT_DOD
+JPK_EWP_4\,.,,0,,"VP(""okr"",PD->ROK)",,Jednolity plik kontrolny dla ewidencji przychod¢w,,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\,xmlns:etd,Z,100,,"""http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2022/01/05/eD/DefinicjeTypy/""",,,,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\,xmlns:kus,Z,0,,"""http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2022/01/05/eD/KodyUrzedowSkarbowych/""",,,,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\,xmlns,Z,0,,"""http://jpk.mf.gov.pl/wzor/2024/10/30/10301/""",,,,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\1.Naglowek\,.,,0,,"KD->(dbseek(VG('okr'))) .and. KP->(dbsetorder('NL')) .and. PD->(dbseek(VG('okr')+""12"")) .and. vp('Lp',0)==0 .and. vp('num',0)==0",,"Dane dotycz•ce JPK_EWP - kod i wariant formularza, cel zàoæenia, data wytworzenia JPK_EWP, data pocz•tkowa i ko‰cowa okresu, kt¢rego dotyczy JPK_EWP oraz kod urz©du skarbowego wàaòciwego dla podatnika",,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\1.Naglowek\1.KodFormularza\,.,Z,0,,"""JPK_EWP""",,,,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\1.Naglowek\1.KodFormularza\,kodSystemowy,Z,0,,"""JPK_EWP (4)""",,,,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\1.Naglowek\1.KodFormularza\,wersjaSchemy,Z,0,,"""1-0""",,,,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\1.Naglowek\2.WariantFormularza\,.,Z,0,,4,,,,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\1.Naglowek\3.CelZlozenia\,.,Z,0,,"Pytaj(""Cel zàoæenia"",""1"")",,,,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\1.Naglowek\4.DataWytworzeniaJPK\,.,C,0,,"strtran(dtoc(today()),'.','-')+'T'+time()",,,,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\1.Naglowek\5.DataOd\,.,D,10,,"VG('okr')+""-01-01""",,,,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\1.Naglowek\6.DataDo\,.,D,10,,"VG('okr')+""-12-01""",,,,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\1.Naglowek\8.KodUrzedu\,.,Z,0,,"iif(DK->(dbsetorder(""DK"")).and.DK->(dbseek(""0002"")),trim(DK->PESEL),"""")",,,,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\2.Podmiot1\,.,,0,,"DK->(dbsetorder(""DK"")).and.DK->(dbseek('0000'))",,,,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\2.Podmiot1\,rola,Z,20,,"""Podatnik""",,,,,,,,,,,2022.02.09 11:39:10
+JPK_EWP_4\2.Podmiot1\OsobaFizyczna\,.,,,,.not.empty(ctod(DK->DATA_UR)),,,,,,,,,,,2022.02.09 11:39:10
+JPK_EWP_4\2.Podmiot1\OsobaFizyczna\1.etd:NIP\,.,Z,15,,trim(DK->NIPBK),,Identyfikator podatkowy NIP podatnika (np. 1010000000).,,,,,,,,,2022.02.09 11:39:10
+JPK_EWP_4\2.Podmiot1\OsobaFizyczna\2.etd:ImiePierwsze\,.,Z,20,,trim(DK->IMIE),,Pierwsze imi© podatnika,,,,,,,,,2022.02.09 11:39:10
+JPK_EWP_4\2.Podmiot1\OsobaFizyczna\3.etd:Nazwisko\,.,Z,20,,trim(DK->NAZWISKO),,Nazwisko podatnika,,,,,,,,,2022.02.09 11:39:10
+JPK_EWP_4\2.Podmiot1\OsobaFizyczna\4.etd:DataUrodzenia\,.,D,10,,"strtran(DK->DATA_UR,""."",""-"")",,Data urodzenia podatnika (np. 1977-07-07),,,,,,,,,2022.02.09 11:39:10
+JPK_EWP_4\2.Podmiot1\OsobaFizyczna\5.Email\,.,Z,30,,"iif(!empty(DK->E_MAIL),trim(DK->E_MAIL),.F.)",,Adres poczty elektronicznej podatnika lub osoby reprezentuj•cej podatnika,,,,,,,,,2022.02.09 11:39:10
+JPK_EWP_4\2.Podmiot1\OsobaFizyczna\6.Telefon\,.,Z,20,,"iif(!empty(DK->TEL),trim(DK->TEL),.F.)",,Numer telefonu kontaktowego (np. 801055055) [pole fakultatywne],,,,,,,,,2022.02.09 11:39:10
+JPK_EWP_4\2.Podmiot1\OsobaNiefizyczna\,.,,,,empty(ctod(DK->DATA_UR)),,,,,,,,,,,2022.02.09 11:39:10
+JPK_EWP_4\2.Podmiot1\OsobaNiefizyczna\1.NIP\,.,Z,10,,trim(DK->NIPBK),,Identyfikator podatkowy NIP podatnika (np. 1010000000).,,,,,,,,,2022.02.09 11:39:10
+JPK_EWP_4\2.Podmiot1\OsobaNiefizyczna\2.PelnaNazwa\,.,Z,,,"trim(DK->NAZWA)+"" ""+trim(DK->NAZWA_CD)",,Nazwa podmiotu,,,,,,,,,2022.02.09 11:39:10
+JPK_EWP_4\2.Podmiot1\OsobaNiefizyczna\3.Email\,.,Z,,,"iif(!empty(DK->E_MAIL),trim(DK->E_MAIL),.F.)",,Adres poczty elektronicznej podatnika lub osoby reprezentuj•cej podatnika,,,,,,,,,2022.02.09 11:39:10
+JPK_EWP_4\2.Podmiot1\OsobaNiefizyczna\4.Telefon\,.,Z,20,,"iif(!empty(DK->TEL),trim(DK->TEL),.F.)",,Numer telefonu kontaktowego (pole fakultatywne),,,,,,,,,2022.02.09 11:39:10
+JPK_EWP_4\2.Podmiot1\Kasowy_PIT\,,Z,1,,.F.,,"Znacznik dla podatnika rozliczaj•cego podatek metod• kasow• (pole opcjonalne - przypisanie wartoòci ""1"" oznacza TAK, brak przypisania wartoòci oznacza NIE)",,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\,.,,0,999,"left(KD->DATA,4)==VG('okr').and. iif(VP('num',VG('num')+1)<>0 .and. KP->(dbseek(vp('kpid',KD->NR_DOK+str(VG('num'), 2)))), KPK->(dbseek(KP->KAT_KP)) .or. .T., VP('num',0)==0.and.KD->(dbskip(1)) .or. .T.) ",".and. progress(""Ksi©ga"", 999, vg('Lp'))",,,,ROW,,,,,0,2026.03.03 12:00:01
+JPK_EWP_4\3.EWPWiersz\1.K_1\,.,N,5,,"vp('Lp', vg('Lp')+1)",,Liczba porz•dkowa wiersza ewidencji przychod¢w (max 14 cyfr),,,,,,,,0,2022.02.09 11:39:12
+JPK_EWP_4\3.EWPWiersz\2.K_2\,.,D,10,,"iif(!empty(ctod(KD->D_WYST)),KD->D_WYST,KD->DATA)",,"Data wpisu do ewidencji przychod¢w w formacie RRRR-MM-DD (np. ""2026-05-15"")",,,,,,,,0,2026.03.03 12:00:02
+JPK_EWP_4\3.EWPWiersz\3.K_3\,.,D,10,,KD->DATA,,"Data uzyskania przychodu w formacie RRRR-MM-DD (np. ""2026-05-15"")",,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\4.K_4\,.,Z,0,,"KD->RD + "" "" + KD->NDK",,"Numer dowodu, na podstawie kt¢rego dokonano wpisu (max 256 znak¢w)",,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\5.K_5\,.,Z,0,,"iif(!empty(KD->KSEF),trim(KD->KSEF), .F.)",,Numer identyfikuj•cy faktur© wystawion• przy uæyciu Krajowego Systemu e-Faktur (numer KSeF) (pole opcjonalne),,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\6.K_6\,,Z,0,,"iif(!empty(KD->KKS),trim(KD->KKS), .F.)",,Kod kraju nadania kontrahentowi identyfikatora podatkowego (zgodnie ze sàownikiem zaimplementowanym w strukturze JPK_EWP) (pole opcjonalne),,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\7.K_7\,,Z,0,,"iif(DK->(dbseek(KD->DST_KLI)) .and. !empty(DK->NIPBK),trim(DK->NIPBK),.F.)",,Numer identyfikatora podatkowego kontrahenta (max 50 znak¢w) (pole opcjonalne),,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\8.K_8\,.,N,12.2,,KP->KWOTA,,"Kwota przychodu w PLN (max 18 cyfr, w tym 2 reprezentuj•ce grosze, np. ""1123.45"")",,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\9.K_9\,.,Z,6,,"iif(KPK->RE == val(str(KPK->RE,6,0)), str(KPK->RE,6,0), KPK->RE)",,Stawka podatku dla kwoty przychodu (zgodnie ze sàownikiem zaimplementowanym w strukturze JPK_EWP),,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\a.K_10\,.,Z,0,,.F.,,"Uwagi - Podatnicy, kt¢rzy zamierzaj• skorzystaÜ z przewidzianej w art. 21 ust. 1a ustawy moæliwoòci kwartalnego wpàacania ryczaàtu od przychod¢w ewidencjonowanych, w kolumnie ""Uwagi"" mog• wpisywaÜ dat© otrzymania przychodu. Podatnicy, kt¢rzy na podstawie art. 15 ust. 1a ustawy s• obowi•zani w prowadzonej ewidencji wyodr©bniÜ przychody obj©te odpowiednio podatkiem tonaæowym albo zryczaàtowanym podatkiem od wartoòci sprzedanej produkcji i ryczaàtem od przychod¢w ewidencjonowanych, przychody obj©te odpowiednio podatkiem tonaæowym albo zryczaàtowanym podatkiem od wartoòci sprzedanej produkcji wykazuj• wyà•cznie w kolumnie ""Uwagi""; (max 256 znak¢w) (pole opcjonalne)",,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\t.TEST\,.,,,,.F.,,,,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\t.TEST\KD_NR_DOK\,,Z,0,,KD->NR_DOK,,,,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\t.TEST\KP_NR_DOK\,,Z,0,,KP->NR_DOK,,,,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\t.TEST\KD_NDK\,,Z,0,,"KD->RD + "" "" + KD->NDK",,,,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\t.TEST\KD_LP\,,Z,0,,KD->LP,,,,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\t.TEST\KP_LP\,,Z,0,,KP->LP,,,,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\t.TEST\KP_KAT_KP\,,Z,0,,KP->KAT_KP,,,,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\t.TEST\num\,,N,5,,VG('num'),,,,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\t.TEST\kpid\,,N,5,,VG('kpid'),,,,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\3.EWPWiersz\t.TEST\DK_NAZWA\,,Z,0,,DK->NAZWA,,TEST,,,,,,,,,2026.03.03 12:00:00
+JPK_EWP_4\4.EWPCtrl\,.,,0,,,,Sumy kontrolne dla tabeli PKPIRWiersz,,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\4.EWPCtrl\1.LiczbaWierszy\,.,N,5,,vg('Lp'),,"Liczba wierszy (zapis¢w) PKPIR, w okresie kt¢rego dotyczy JPK_PKPIR",,,,,,,,0,2026.03.03 12:00:00
+JPK_EWP_4\4.EWPCtrl\2.SumaPrzychodow\,.,N,12.2,,PD->PRZYCHOD,,"ù•czna wartoòÜ przychod¢w razem (kol. 9) w PKPIR w okresie, kt¢rego dotyczy JPK_PKPIR",,,,,,,,0,2026.03.03 12:00:00
