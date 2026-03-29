@@ -13,7 +13,7 @@ VDIR := var
 ODIR := out
 export DBF_PATH ?= $(VDIR)
 
-RAPORTY := jpk_v7m_3 jpk_v7k_3 jpk_ewp_4 fa_3
+RAPORTY := jpk_v7m_3 jpk_v7k_3 jpk_ewp_4 jpk_st_1 fa_3
 BAZY    := RAP RW STR
 CELE    := $(addprefix $(ODIR)/, $(RAPORTY))
 RELEASE := JPK3.zip
@@ -105,6 +105,21 @@ $(jpk_ewp_4.RW): jpk_ewp_4.RW.csv
 
 $(jpk_ewp_4.STR): jpk_ewp_4.STR.csv
 	$(DBF) query 'delete from XML_STR where ADRES like "JPK_EWP_4\\%"'
+	$(DBF) import XML_STR $<
+	touch $@
+
+# JPK_ST_1
+
+$(jpk_st_1.RAP): jpk_st_1.RAP.csv
+	$(DBF) query 'delete from XML_RAP where RAP = "JPK_ST_1"'
+	$(DBF) import XML_RAP $<
+	touch $@
+
+$(jpk_st_1.RW): 
+	touch $@
+
+$(jpk_st_1.STR): jpk_st_1.STR.csv
+	$(DBF) query 'delete from XML_STR where ADRES like "JPK_ST_1\\%"'
 	$(DBF) import XML_STR $<
 	touch $@
 

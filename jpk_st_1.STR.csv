@@ -1,0 +1,61 @@
+ADRES,NAZWA,TYP,ROZMIAR,LICZBA,FORMULA,FORMULA1,OPIS,OPIS1,SLOWNIK,REGWYM,WYMOG,UWAGI,POLECENIE,POLECENIE1,WYST,DT_DOD
+JPK_ST_1\,.,,0,,"VP(""okr"",PD->ROK)",,Jednolity plik kontrolny dla ewidencji ˜rodk¢w trwaˆych,,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\,xmlns:etd,Z,100,,"""http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2022/01/05/eD/DefinicjeTypy/""",,,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\,xmlns:kus,Z,0,,"""http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2022/01/05/eD/KodyUrzedowSkarbowych/""",,,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\,xmlns,Z,0,,"""http://jpk.mf.gov.pl/wzor/2024/11/26/11262/""",,,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\1.Naglowek\,.,,0,,".T. .or. KD->(dbseek(VG('okr'))) .and. KP->(dbsetorder('NL')) .and. PD->(dbseek(VG('okr')+""12"")) .and. vp('Lp',0)==0 .and. vp('num',0)==0",,"Dane dotycz¥ce pliku JPK_ST - kod i wariant formularza, cel zˆo¾enia, data wytworzenia pliku JPK_ST, data pocz¥tkowa i koäcowa okresu, kt¢rego dotyczy plik JPK_ST oraz kod urz©du skarbowego wˆa˜ciwego dla podatnika",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\1.Naglowek\1.KodFormularza\,.,Z,0,,"""JPK_ST""",,,,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\1.Naglowek\1.KodFormularza\,kodSystemowy,Z,0,,"""JPK_ST (1)""",,,,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\1.Naglowek\1.KodFormularza\,wersjaSchemy,Z,0,,"""1-2""",,,,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\1.Naglowek\2.WariantFormularza\,.,Z,0,,1,,,,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\1.Naglowek\3.CelZlozenia\,.,Z,0,,"Pytaj(""Cel zˆo¾enia"",""1"")",,"Pole zawiera okre˜lenie celu zˆo¾enia: - 0 - zˆo¾enie JPK na ¾¥danie, - 1 - zˆo¾enie JPK po raz pierwszy (dotyczy wyˆ¥cznie obligatoryjnego JPK), - 2 - zˆo¾enie korekty JPK (dotyczy wyˆ¥cznie obligatoryjnego JPK)",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\1.Naglowek\4.DataWytworzeniaJPK\,.,C,0,,"strtran(dtoc(today()),'.','-')+'T'+time()",,"Data i czas wytworzenia pliku JPK_ST w formacie RRRR-MM-DDTGG:MM:SS (np. ""2027-03-21T09:30:47""). Opcjonalnie dla oznaczenia czasu uniwersalnego (UTC) mo¾na na koäcu doda† liter© ""Z"" (ZULU) (np.: 2027-03-21T09:30:47Z)",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\1.Naglowek\5.DataOd\,.,D,10,,"VG('okr')+""-01-01""",,"Data pocz¥tkowa okresu, kt¢rego dotyczy JPK_ST w formacie RRRR-MM-DD (np. ""2026-01-01"")",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\1.Naglowek\6.DataDo\,.,D,10,,"VG('okr')+""-12-01""",,"Data koäcowa okresu, kt¢rego dotyczy JPK_ST w formacie RRRR-MM-DD (np. ""2026-12-31"")",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\1.Naglowek\8.KodUrzedu\,.,Z,0,,"iif(DK->(dbsetorder(""DK"")).and.DK->(dbseek(""0002"")),trim(DK->PESEL),"""")",,Oznaczenie kodu urz©du skarbowego wˆa˜ciwego dla podatnika - wyb¢r ze sˆownika,,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\,.,,0,,"DK->(dbsetorder(""DK"")).and.DK->(dbseek('0000')).and.VP('RE',DK->FD==""RE"", .T.)",,"Dane identyfikuj¥ce podmiot przekazuj¥cy plik JPK_ST - NIP, imi©, nazwisko i data urodzenia lub peˆna nazwa podmiotu, email, telefon kontaktowy oraz wskazanie, czy wybrano metod© kasow¥ dla rozliczeä PIT",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\,rola,Z,20,,"""Podatnik""",,,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\Informacja\,,Z,1,,"Info(""UWAGA! Ten formularz generuje pusty plik JPK_ST. Je¾eli posiadasz ˜rodki trwaˆe, musisz uzupeˆni† plik r©cznie!"").and..F.",,,,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\OsobaFizyczna\,.,,,,.not.empty(ctod(DK->DATA_UR)),,Dane identyfikuj¥ce podmiot - osob© fizyczn¥,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\OsobaFizyczna\1.etd:NIP\,.,Z,15,,trim(DK->NIPBK),,Identyfikator podatkowy NIP,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\OsobaFizyczna\2.etd:ImiePierwsze\,.,Z,20,,trim(DK->IMIE),,Pierwsze imi© osoby fizycznej (max 30 znak¢w),,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\OsobaFizyczna\3.etd:Nazwisko\,.,Z,20,,trim(DK->NAZWISKO),,Nazwisko osoby fizycznej (max 81 znak¢w),,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\OsobaFizyczna\4.etd:DataUrodzenia\,.,D,10,,"strtran(DK->DATA_UR,""."",""-"")",,"Data urodzenia osoby fizycznej w formacie RRRR-MM-DD (np. ""1970-05-10"")",,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\OsobaFizyczna\5.Email\,.,Z,30,,"iif(!empty(DK->E_MAIL),trim(DK->E_MAIL),.F.)",,"Email (min 3 znaki, max 255 znak¢w, musi zawiera† znak ""@)"") (pole opcjonalne)",,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\OsobaFizyczna\6.Telefon\,.,Z,20,,"iif(!empty(DK->TEL),trim(DK->TEL),.F.)",,Telefon kontaktowy (max 16 znak¢w) (pole opcjonalne),,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\OsobaNiefizyczna\,.,,,,empty(ctod(DK->DATA_UR)),,Dane identyfikuj¥ce podmiot - nieb©d¥cy osob¥ fizyczn¥,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\OsobaNiefizyczna\1.NIP\,.,Z,10,,trim(DK->NIPBK),,Identyfikator podatkowy NIP,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\OsobaNiefizyczna\2.PelnaNazwa\,.,Z,,,"trim(DK->NAZWA)+"" ""+trim(DK->NAZWA_CD)",,Peˆna nazwa podmiotu (max 240 znak¢w),,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\OsobaNiefizyczna\3.Email\,.,Z,,,"iif(!empty(DK->E_MAIL),trim(DK->E_MAIL),.F.)",,"Email (min 3 znaki, max 255 znak¢w, musi zawiera† znak ""@)"") (pole opcjonalne)",,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\OsobaNiefizyczna\4.Telefon\,.,Z,20,,"iif(!empty(DK->TEL),trim(DK->TEL),.F.)",,Telefon kontaktowy (max 16 znak¢w) (pole opcjonalne),,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\2.Podmiot1\ZnacznikST\,,Z,1,,"iif(VG('RE'), 1, 2)",,"Znacznik rodzaju prowadzonej ewidencji/wykazu ˜rodk¢w trwaˆych oraz warto˜ci niematerialnych i prawnych: - 1 - wykaz ˜rodk¢w trwaˆych oraz warto˜ci niematerialnych i prawnych dla podmiot¢w prowadz¥cych ewidencj© przychod¢w EWP, - 2 - ewidencja ˜rodk¢w trwaˆych oraz warto˜ci niematerialnych i prawnych dla podmiot¢w prowadz¥cych podatkow¥ ksi©g© przychod¢w i rozchod¢w PKPIR",,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\,,,,,VG('RE'),,Wiersze wykazu ˜rodk¢w trwaˆych oraz warto˜ci niematerialnych i prawnych dla podmiot¢w prowadz¥cych ewidencj© przychod¢w,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\,.,,0,999,".F. .and. left(KD->DATA,4)==VG('okr').and. iif(VP('num',VG('num')+1)<>0 .and. KP->(dbseek(vp('kpid',KD->NR_DOK+str(VG('num'), 2)))), KPK->(dbseek(KP->KAT_KP)) .or. .T., VP('num',0)==0.and.KD->(dbskip(1)) .or. .T.) ",".and. progress(""Ksi©ga"", 999, vg('Lp'))",,,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\01.F_1\,.,N,5,,"vp('Lp', vg('Lp')+1)",,Liczba porz¥dkowa wiersza wykazu (max 14 cyfr),,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\02.F_2\,.,D,10,,"iif(!empty(ctod(KD->D_WYST)),KD->D_WYST,KD->DATA)",,"Data nabycia/wytworzenia ˜rodka trwaˆego w formacie RRRR-MM-DD (np. ""2026-05-15"")",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\03.F_3\,.,D,10,,KD->DATA,,"Data nabycia warto˜ci niematerialnej i prawnej lub zakoäczenia prac rozwojowych zaliczanych do warto˜ci niematerialnych i prawnych w formacie RRRR-MM-DD (np. ""2026-05-15"")",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\04.F_4\,.,Z,0,,"KD->RD + "" "" + KD->NDK",,"Data przyj©cia ˜rodka trwaˆego lub warto˜ci niematerialnej i prawnej do u¾ywania w formacie RRRR-MM-DD (np. ""2026-05-15"")",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\05.F_5\,.,Z,0,,"iif(!empty(KD->KSEF),trim(KD->KSEF), .F.)",,"Okre˜lenie numeru dokumentu, na podstawie kt¢rego przyj©to ˜rodek trwaˆy lub warto˜† niematerialn¥ i prawn¥ (max 256 znak¢w) (pole opcjonalne)",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\06.F_6\,,Z,0,,"iif(!empty(KD->KKS),trim(KD->KKS), .F.)",,"Okre˜lenie rodzaju dokumentu stwierdzaj¥cego nabycie/wytworzenie. Rodzaj dokumentu wskazuje si© poprzez wyb¢r odpowiedniego oznaczenia: - S - umowa sprzeda¾y, - D - darowizna, - N - wkˆad niepieni©¾ny, - W - wytworzenie, - F - faktura VAT, - I - inne",,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\07.F_7\,,Z,0,,"iif(DK->(dbseek(KD->DST_KLI)) .and. !empty(DK->NIPBK),trim(DK->NIPBK),.F.)",,Nazwa ˜rodka trwaˆego lub warto˜ci niematerialnej i prawnej (max 256 znak¢w),,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\08.F_8\,.,N,12.2,,KP->KWOTA,,Symbol klasyfikacji ˜rodk¢w trwaˆych (K—T) (max 256 znak¢w) (pole opcjonalne),,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\09.F_9\,.,Z,6,,"iif(KPK->RE == val(str(KPK->RE,6,0)), str(KPK->RE,6,0), KPK->RE)",,"Stawka amortyzacyjna podatkowa podstawowa (warto˜† procentowa z przedziaˆu od ""0.00"" do ""100.00"" podawana z dokˆadno˜ci¥ do cz©˜ci setnych np. ""33.33"")",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\10.F_10\,.,Z,0,,.F.,,"Warto˜† pocz¥tkowa podatkowa w PLN (max 18 cyfr, w tym 2 reprezentuj¥ce grosze, np. ""1123.45"")",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\11.F_11\,.,Z,0,,.F.,,"Zaktualizowana warto˜† pocz¥tkowa podatkowa w PLN (max 18 cyfr, w tym 2 reprezentuj¥ce grosze, np. ""1123.45"") (pole opcjonalne)",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\12.F_12\,.,Z,0,,.F.,,"Data likwidacji/zbycia/stwierdzenia niedoboru/kradzie¾y w formacie RRRR-MM-DD (np. ""2026-05-15"")",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\13.F_13\,.,Z,0,,.F.,,"Przyczyna wykre˜lenia z wykazu wskazywana poprzez wyb¢r odpowiedniego oznaczenia: - S - sprzeda¾, - X - stwierdzenie niedoboru, - K - kradzie¾, - D - darowizna, - N - wkˆad niepieni©¾ny, - I - inne",,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\14.F_14\,.,Z,0,,.F.,,Okre˜lenie numeru dokumentu stwierdzaj¥cego wykre˜lenie z wykazu (max 256 znak¢w),,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\15.F_15\,.,Z,0,,.F.,,Wskazanie numeru dokumentu KSeF stwierdzaj¥cego zbycie (w©zeˆ umo¾liwia wskazanie nieograniczonej liczby nr KSeF) (w©zeˆ opcjonalny),,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\16.F_16\,.,Z,0,,.F.,,Reklasyfikacja: 1 - TAK; 2 - NIE,,,,,,,,0,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\t.TEST\,.,,,,.F.,,,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\t.TEST\KD_NR_DOK\,,Z,0,,KD->NR_DOK,,,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\t.TEST\KP_NR_DOK\,,Z,0,,KP->NR_DOK,,,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\\Wiersz\t.TEST\KD_NDK\,,Z,0,,"KD->RD + "" "" + KD->NDK",,,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\\Wiersz\t.TEST\KD_LP\,,Z,0,,KD->LP,,,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\\Wiersz\t.TEST\KP_LP\,,Z,0,,KP->LP,,,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\t.TEST\KP_KAT_KP\,,Z,0,,KP->KAT_KP,,,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\t.TEST\num\,,N,5,,VG('num'),,,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\t.TEST\kpid\,,N,5,,VG('kpid'),,,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\3.EWP\Wiersz\t.TEST\DK_NAZWA\,,Z,0,,DK->NAZWA,,TEST,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\4.PKPIR\,,,,,.not.VG('RE'),,Wiersze ewidencji ˜rodk¢w trwaˆych oraz warto˜ci niematerialnych i prawnych dla podmiot¢w prowadz¥cych podatkow¥ ksi©g© przychod¢w i rozchod¢w,,,,,,,,,2026.03.29 12:00:00
+JPK_ST_1\4.PKPIR\Wiersz\,.,,0,999,".F. .and. left(KD->DATA,4)==VG('okr').and. iif(VP('num',VG('num')+1)<>0 .and. KP->(dbseek(vp('kpid',KD->NR_DOK+str(VG('num'), 2)))), KPK->(dbseek(KP->KAT_KP)) .or. .T., VP('num',0)==0.and.KD->(dbskip(1)) .or. .T.) ",".and. progress(""Ksi©ga"", 999, vg('Lp'))",,,,,,,,,0,2026.03.29 12:00:00
