@@ -24,7 +24,7 @@ jego zawartość pod kątem poprawności merytorycznej!
 ## Instalacja
 
 W zakładce [releases](https://github.com/Roslaniec/VATowiec/releases) 
-anajdziesz repozytoria z kolejnymi wydaniami. 
+znajdziesz repozytoria z kolejnymi wydaniami. 
 Znajdź najnowsze wydanie (release) a w nim archiwum **JPK3.zip**.
 
 W tym pliku będa trzy pliki: XML_RAP.dbf, XML_RW.dbf, XML_STR.dbf.
@@ -36,8 +36,8 @@ To są bazy danych które należy podmienić w VATowcu w taki sposób:
 2. Umieść wypakowane pliki XML_*.dbf w katalogu **C:\BR\PROGRAMY\HELP** (nadpisując istniejące pliki)
 
 3. Uruchom VATowca i wykonaj:  
-   - System > Definicje XML  
-   - Prawy przycisk myszy... Import  
+   - Menu: System > Definicje XML  
+   - Menu: Operacje > Import  
    - Wybierz formularz: JPK_V7M_3 i/lub JPK_V7K_3... [ > ]... [ OK ]
 
 5. Gotowe.
