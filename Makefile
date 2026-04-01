@@ -2,12 +2,11 @@
 # How to use:
 # ----------
 # make clean
-# make init
+# make init    (alternatively: make init0)
 # make release
 #
 
-
-.PHONY: all init clean download dogrywka release
+.PHONY: all init init0 clean download dogrywka release dirs
 
 VDIR := var
 ODIR := out
@@ -34,10 +33,17 @@ endif
 
 all: $(CELE)
 
-init: 
+dirs:
 	@mkdir -p $(VDIR)
 	@mkdir -p $(ODIR)
+
+init: dirs
 	$(MAKE) dogrywka
+
+init0: dirs
+	$(DBF) query 'delete from XML_RAP'
+	$(DBF) query 'delete from XML_RW'
+	$(DBF) query 'delete from XML_STR'
 
 clean:
 	rm -f $(ODIR)/jpk_* $(ODIR)/fa_*
